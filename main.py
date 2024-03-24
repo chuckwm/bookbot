@@ -2,7 +2,6 @@ def main():
     book = "books/frankenstein.txt"
     text = get_book_text(book)
     num_words = count_words(text)
-    print(num_words)
     counted_letters = count_letters(text)
     best = sorted([(v,k) for (k,v) in counted_letters.items()], reverse=True)
     report = create_report(book, num_words, best)
@@ -19,7 +18,7 @@ def count_words(text):
 def count_letters(text):
     letters = dict()
     for letter in text.lower():
-        if letter in 'abcdefghijklmnopqrstuvwxyz':
+        if letter.isalpha():
             letters[letter] = letters.get(letter,0)+1
     return letters
 
