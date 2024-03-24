@@ -2,9 +2,10 @@ def main():
     book = "books/frankenstein.txt"
     text = get_book_text(book)
     num_words = count_words(text)
+    print(num_words)
     counted_letters = count_letters(text)
     best = sorted([(v,k) for (k,v) in counted_letters.items()], reverse=True)
-    report = create_report(book, best)
+    report = create_report(book, num_words, best)
     print(report)
 
 def get_book_text(book):
@@ -23,9 +24,10 @@ def count_letters(text):
     return letters
 
 
-def create_report(book, best):
+def create_report(book, num_words, best):
     body = ""
     body += f"--- Begin report of {book} ---\n"
+    body += f"{num_words} words found in the document\n\n"
     for count, letter in best:
         body += f"The '{letter}' character was found {count} times\n"
     body += "--- End report ---"
